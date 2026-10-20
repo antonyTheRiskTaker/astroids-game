@@ -20,8 +20,10 @@ def main():
 
         screen.fill("black")
         player.draw(screen)
+        player.update(dt)
         pygame.display.flip()
-        dt = clock.tick(60) / 1_000
+
+        dt = clock.tick(60) / 1_000 # limit the framerate to 60 FPS
         # print(dt)
 
     # print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
