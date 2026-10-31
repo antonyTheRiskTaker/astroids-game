@@ -1,6 +1,7 @@
 import pygame
+import sys
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
-from logger import log_state
+from logger import log_state, log_event
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -37,9 +38,15 @@ def main():
         dt = clock.tick(60) / 1_000 # limit the framerate to 60 FPS
         # print(dt)
 
-    # print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
-    # print(f"Screen width: {SCREEN_WIDTH}")
-    # print(f"Screen height: {SCREEN_HEIGHT}")
+        # print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
+        # print(f"Screen width: {SCREEN_WIDTH}")
+        # print(f"Screen height: {SCREEN_HEIGHT}")
+
+        for asteroid in asteroids:
+            if asteroid.collides_with(player):
+                log_event("player_hit")
+                print("Game over!")
+                sys.exit()
 
 
 if __name__ == "__main__":
